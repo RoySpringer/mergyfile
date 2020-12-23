@@ -1,0 +1,15 @@
+{
+  "name": "pdfmerge",
+  "version": "1.0.0",
+  "description": "A simple pdf merger",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "pdf",
+    "merge"
+  ],
+  "author": "R Springer",
+  "license": "ISC"
+}
