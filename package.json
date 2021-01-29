@@ -4,6 +4,7 @@
   "description": "A simple pdf merger",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -11,5 +12,11 @@
     "merge"
   ],
   "author": "R Springer",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "pdf-merger-js": "^3.0.5"
+  },
+  "devDependencies": {
+    "electron": "^11.1.1"
+  }
 }
