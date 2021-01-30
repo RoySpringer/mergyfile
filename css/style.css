@@ -57,28 +57,48 @@ input#file-upload-button {
 }
 
 .button {
+  cursor: pointer;
   font-weight: bold;
   font-size: 1em;
   padding: 1em 2em;
   border: none;
+  transition: all 150ms ease;
+  user-select: none;
 }
 
-.btn-primary,
-input#file-upload-button {
+.btn-primary {
   color: white;
   background-color: #86cd82;
+}
+
+.btn-primary:hover {
+  box-shadow: 3px 3px 0px #72a276;
+}
+
+.btn-primary:active {
+  border: none;
+  transform: translate(3px, 3px);
+  box-shadow: 0px 0px 0px #72a276;
+}
+
+.btn-small {
+  padding: 0.5em 1em;
 }
 
 .file {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
 }
 
 .file-end {
   display: flex;
+  margin-left: 1em;
 }
 
 .bottom {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -92,4 +112,12 @@ input#file-upload-button {
 .image {
   transition: all 200ms ease;
   margin-bottom: 1em;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.image.active {
+  transition: all 200ms ease;
+  opacity: 1;
+  visibility: visible;
 }

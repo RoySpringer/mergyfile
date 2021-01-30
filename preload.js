@@ -34,8 +34,8 @@ const updateFiles = () => {
     filesEl.innerHTML += `<div class="file">
       <p>${file.name}</p>
       <div class="file-end">
-        <input type="text"/>
-        <p id="${file.name}">remove</p>
+        <!--<input type="text"/>-->
+        <p class="button btn-primary btn-small" id="${file.name}">remove</p>
       </div>
     </div>`;
   });
@@ -48,7 +48,7 @@ const updateFiles = () => {
 };
 
 const updateIcon = () => {
-  const image = document.getElementById("image");
+  const image = document.getElementById("imageAdd");
   if (files.length > 0) {
     image.src = "./assets/pdf merge.svg";
   } else {
