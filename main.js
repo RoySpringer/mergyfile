@@ -5,6 +5,8 @@ const path = require("path");
 const { ipcMain } = require("electron");
 const { PDFDocument } = require("pdf-lib");
 
+if (require("electron-squirrel-startup")) return app.quit();
+
 function createWindow() {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
