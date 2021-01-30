@@ -1,9 +1,9 @@
 // Modules to control application life and create native browser window
 const { app, BrowserWindow, dialog } = require("electron");
+const fs = require("fs");
 const path = require("path");
 const { ipcMain } = require("electron");
-const PDFMerger = require("pdf-merger-js");
-const merger = new PDFMerger();
+const { PDFDocument } = require("pdf-lib");
 
 function createWindow() {
   // Create the browser window.
@@ -45,12 +45,37 @@ app.on("window-all-closed", function () {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+const mergePDFs = async (pdfs) => {
+  const result = await PDFDocument.create();
+  for (const pdf of pdfs) {
+    const newPdf = await PDFDocument.load(pdf);
+    const pagesArray = await result.copyPages(newPdf, newPdf.getPageIndices());
+    for (const page of pagesArray) {
+      result.addPage(page);
+    }
+  }
+
+  return result.save();
+};
+
 ipcMain.on("merge-files", async (event, files) => {
-  files.forEach(function (file) {
-    // Do whatever you want to do with the file
-    if (path.extname(file).toLowerCase() === ".pdf") {
-      console.log(`Adding ${file}`);
-      merger.add(file);
+  const pdfStreams = [];
+  files.forEach(async (file) => {
+    try {
+      // Do whatever you want to do with the file
+      if (path.extname(file).toLowerCase() === ".pdf") {
+        console.log(`Adding ${file}`);
+        await fs.readFile(file, (err, data) => {
+          if (err) throw err;
+          pdfStreams.push(data);
+        });
+      }
+    } catch (e) {
+      event.reply("merge-complete", {
+        status: "failed",
+        message: "Could not load the files",
+      });
+      return;
     }
   });
   try {
@@ -58,11 +83,32 @@ ipcMain.on("merge-files", async (event, files) => {
       filters: [{ name: "PDF", extensions: ["pdf"] }],
     });
     if (!result.canceled && result.filePath) {
-      await merger.save(result.filePath);
-      event.reply("merge-complete", filename);
+      const mergedPDF = await mergePDFs(pdfStreams);
+      try {
+        await fs.writeFile(result.filePath, mergedPDF, (err) => {
+          if (err) throw err;
+          event.reply("merge-complete", {
+            status: "success",
+            message: "Successfully merged the files: " + result.filePath,
+          });
+        });
+      } catch (e) {
+        event.reply("merge-complete", {
+          status: "failed",
+          message: "Could not save file!",
+        });
+      }
+    } else {
+      event.reply("merge-complete", {
+        status: "canceled",
+        message: "User canceled the dialog",
+      });
     }
   } catch (e) {
     console.error(e);
-    event.reply("merge-complete", "failed");
+    event.reply("merge-complete", {
+      status: "failed",
+      message: "Could not save or merge the files",
+    });
   }
 });

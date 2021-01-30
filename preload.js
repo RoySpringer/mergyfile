@@ -1,7 +1,7 @@
 // All of the Node.js APIs are available in the preload process.
 // It has the same sandbox as a Chrome extension.
 const { ipcRenderer } = require("electron");
-const files = [];
+let files = [];
 
 document.addEventListener("drop", function (event) {
   event.preventDefault();
@@ -9,7 +9,7 @@ document.addEventListener("drop", function (event) {
   for (let file of event.dataTransfer.files) {
     files.push(file);
   }
-  updateFiles();
+  updateComponents();
   return false;
 });
 
@@ -44,7 +44,6 @@ const updateFiles = () => {
       removeFile(file.name);
     });
   });
-  updateIcon();
 };
 
 const updateIcon = () => {
@@ -56,12 +55,35 @@ const updateIcon = () => {
   }
 };
 
+const updateButton = () => {
+  if (files.length > 0) {
+    document.getElementById("merge").classList.remove("disabled");
+  } else {
+    document.getElementById("merge").classList.add("disabled");
+  }
+};
+
 const removeFile = (name) => {
   const index = files.findIndex((el) => el.name === name);
   if (index !== -1) {
     files.splice(index, 1);
-    updateFiles();
+    updateComponents();
   }
 };
 
-ipcRenderer.on("merge-complete", () => console.log("complete"));
+const updateComponents = () => {
+  updateFiles();
+  updateIcon();
+  updateButton();
+};
+
+ipcRenderer.on("merge-complete", (event, messageObj) => {
+  if (messageObj.status === "failed") {
+    document.getElementById("error").innerText = messageObj.message;
+  } else if (messageObj.status === "success") {
+    document.getElementById("error").innerText = "";
+    document.getElementById("files").innerText = messageObj.message;
+    files = [];
+    updateComponents();
+  }
+});
