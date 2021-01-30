@@ -1,0 +1,95 @@
+@import url("../assets/fonts/Montserrat-SemiBold.ttf");
+@import url("../assets/fonts/Montserrat-Regular.ttf");
+@import url("../assets/fonts/Montserrat-Light.ttf");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+}
+body {
+  width: 100%;
+  height: 100%;
+  font-family: "Montserrat", sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  background-color: #666b6a;
+}
+
+h1,
+h2,
+h3 {
+  color: white;
+}
+
+button,
+input,
+input#file-upload-button {
+  font-family: "Montserrat", sans-serif;
+}
+
+footer {
+  color: white;
+  font-size: small;
+}
+
+a {
+  color: #86cd82;
+}
+
+.header {
+  margin: 1em;
+}
+
+.container {
+}
+
+input#file-upload-button {
+  font-size: 3em;
+}
+
+.button {
+  font-weight: bold;
+  font-size: 1em;
+  padding: 1em 2em;
+  border: none;
+}
+
+.btn-primary,
+input#file-upload-button {
+  color: white;
+  background-color: #86cd82;
+}
+
+.file {
+  display: flex;
+  justify-content: space-between;
+}
+
+.file-end {
+  display: flex;
+}
+
+.bottom {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.drop-text {
+  margin: 1em;
+}
+
+.image {
+  transition: all 200ms ease;
+  margin-bottom: 1em;
+}
