@@ -1,5 +1,9 @@
 # PDF Merger
-A small application that can merge multiple pdf files into one. It is a small open source project to learn more about electron and creating desktop apps with it.
+A small application that can merge multiple pdf files into one. It is a small open source project where you can merge your PDF files.
+
+## Why I started this project
+For most of the time when merging PDFs I use online tools to do that. But when I needed to merge some important files with personal information in it I didn't want to use a website for that. So I started with a small command-line NodeJS tool that can do it for me, which had an input folder and an output folder. In goes the files you want to merge and out goes the files merged together. A very easy tool when using the command-line and having NodeJS installed. I wanted to share my tool with other people arround me, but not everyone I know happens to have NodeJS installed on there computer, let alone use command-line tools. 😅
+It was a good time to convert this easy command-line tool to a desktop app and learn more about Electron.
 
 ## To Use
 
