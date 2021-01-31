@@ -1,18 +1,9 @@
-# electron-quick-start
+# PDF Merger
+A small application that can merge multiple pdf files into one. It is a small open source project where you can merge your PDF files.
 
-**Clone and run for a quick way to see Electron in action.**
-
-This is a minimal Electron application based on the [Quick Start Guide](https://electronjs.org/docs/tutorial/quick-start) within the Electron documentation.
-
-**Use this app along with the [Electron API Demos](https://electronjs.org/#get-started) app for API code examples to help you get started.**
-
-A basic Electron application needs just these files:
-
-- `package.json` - Points to the app's main file and lists its details and dependencies.
-- `main.js` - Starts the app and creates a browser window to render HTML. This is the app's **main process**.
-- `index.html` - A web page to render. This is the app's **renderer process**.
-
-You can learn more about each of these components within the [Quick Start Guide](https://electronjs.org/docs/tutorial/quick-start).
+## Why I started this project
+For most of the time when merging PDFs I use online tools to do that. But when I needed to merge some important files with personal information in it I didn't want to use a website for that. So I started with a small command-line NodeJS tool that can do it for me, which had an input folder and an output folder. In goes the files you want to merge and out goes the files merged together. A very easy tool when using the command-line and having NodeJS installed. I wanted to share my tool with other people arround me, but not everyone I know happens to have NodeJS installed on there computer, let alone use command-line tools😅.
+It was a good time to convert this easy command-line tool to a desktop app and learn more about Electron.
 
 ## To Use
 
@@ -20,9 +11,9 @@ To clone and run this repository you'll need [Git](https://git-scm.com) and [Nod
 
 ```bash
 # Clone this repository
-git clone https://github.com/electron/electron-quick-start
+git clone https://github.com/RoySpringer/pdf-merger.git
 # Go into the repository
-cd electron-quick-start
+cd pdf-merger
 # Install dependencies
 npm install
 # Run the app
@@ -31,15 +22,15 @@ npm start
 
 Note: If you're using Linux Bash for Windows, [see this guide](https://www.howtogeek.com/261575/how-to-run-graphical-linux-desktop-applications-from-windows-10s-bash-shell/) or use `node` from the command prompt.
 
-## Resources for Learning Electron
-
-- [electronjs.org/docs](https://electronjs.org/docs) - all of Electron's documentation
-- [electronjs.org/community#boilerplates](https://electronjs.org/community#boilerplates) - sample starter apps created by the community
-- [electron/electron-quick-start](https://github.com/electron/electron-quick-start) - a very basic starter Electron app
-- [electron/simple-samples](https://github.com/electron/simple-samples) - small applications with ideas for taking them further
-- [electron/electron-api-demos](https://github.com/electron/electron-api-demos) - an Electron app that teaches you how to use Electron
-- [hokein/electron-sample-apps](https://github.com/hokein/electron-sample-apps) - small demo apps for the various Electron APIs
+## Roadmap
+- [ ] Refactor to React - With TypeScript and webpack.
+- [ ] Add page selection per PDF to indicate which pages of a PDF you want to merge.
+- [ ] Add better documentation for the project.
+- [ ] Add unit tests.
+- [ ] Add some sort of build proces to the project and create releases with installers voor all platforms.
 
 ## License
 
-[CC0 1.0 (Public Domain)](LICENSE.md)
+Copyright (c) Roy Springer. All rights reserved.
+
+Licensed under the [MIT](LICENSE) license.
