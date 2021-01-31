@@ -1,5 +1,5 @@
 # PDF Merger
-A small application that can merge multiple pdf files into one. It a small opensource project to learn more about electron and creating desktop apps with it.
+A small application that can merge multiple pdf files into one. It is a small open source project to learn more about electron and creating desktop apps with it.
 
 ## To Use
 
