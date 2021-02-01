@@ -25,6 +25,5 @@
  *  });
  * ```
  */
-
 import "./index.css";
-import "./app";
+import "./app.tsx";

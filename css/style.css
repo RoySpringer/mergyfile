@@ -56,43 +56,6 @@ input#file-upload-button {
   font-size: 3em;
 }
 
-.button {
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 1em;
-  padding: 1em 2em;
-  border: none;
-  transition: all 150ms ease;
-  user-select: none;
-  box-shadow: 3px 3px 0px #72a276;
-}
-
-.btn-primary {
-  color: white;
-  background-color: #86cd82;
-}
-
-.btn-primary:hover {
-  background-color: #a0e99d;
-  box-shadow: 3px 3px 0px #72a276, 0px 0px 10px #a0e99d8e;
-}
-
-.btn-primary:active,
-.btn-primary.disabled {
-  background-color: #72a276;
-  border: none;
-  transform: translate(3px, 3px);
-  box-shadow: 0px 0px 0px #72a276;
-}
-
-.btn-primary.disabled {
-  cursor: not-allowed;
-}
-
-.btn-small {
-  padding: 0.5em 1em;
-}
-
 .file {
   display: flex;
   justify-content: space-between;

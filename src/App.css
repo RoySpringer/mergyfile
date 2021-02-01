@@ -1,0 +1,26 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.App-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1em;
+}
+.App-header-h1 {
+  text-align: center;
+}
+.App-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.App-footer {
+  text-align: center;
+}
