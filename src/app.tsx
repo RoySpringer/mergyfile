@@ -29,7 +29,7 @@ const App: FunctionComponent<Props> = () => {
   return (
     <div className="App absoluteFill">
       <header className="App-header">
-        <h1 className="App-header-h1">PDF Merger</h1>
+        <h1 className="App-header-h1 shadow-text">Mergyfile</h1>
       </header>
       <div className="App-container">
         <Icon iconType={iconType} />

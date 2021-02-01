@@ -1,5 +1,6 @@
 interface PDFFile {
   name: string;
+  path: string;
   pages: string;
 }
 

@@ -6,21 +6,26 @@
 
 .App-header {
   display: flex;
+  width: 80%;
+  margin: 0 auto;
   justify-content: center;
   align-items: center;
-  margin: 1em;
+  transform: rotate(-7deg);
+  font-style: italic;
+  user-select: none;
 }
 .App-header-h1 {
-  text-align: center;
+  font-family: "Norican";
+  font-size: 4.6em;
 }
 .App-container {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 
 .App-footer {
   text-align: center;
+}
+
+.App-footer-credits {
+  font-size: 0.7em;
 }

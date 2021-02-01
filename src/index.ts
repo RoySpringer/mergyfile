@@ -19,16 +19,16 @@ const createWindow = (): void => {
     webPreferences: {
       nodeIntegration: true,
     },
-    // icon: path.join(__dirname, "icon.png"),
+    // icon: "./assets/icon.png",
   });
 
   // and load the index.html of the app.
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
 
-  // Open the DevTools.
-  mainWindow.webContents.openDevTools();
-
-  // parsePages("1,3,5,6,8-20", 20);
+  if (process.env.NODE_ENV === "development") {
+    // Open the DevTools.
+    mainWindow.webContents.openDevTools();
+  }
 };
 
 // This method will be called when Electron has finished
@@ -55,10 +55,12 @@ app.on("activate", () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
+
+// Merging the pdf files
 const mergePDFs = async (pdfs: PDFFile[]): Promise<Uint8Array> => {
   const result = await PDFDocument.create();
   for (const pdf of pdfs) {
-    const pdfBuffer = fs.readFileSync(pdf.name);
+    const pdfBuffer = fs.readFileSync(pdf.path);
     const newPdf = await PDFDocument.load(pdfBuffer);
     let pageIndicesArray = [];
     if (pdf.pages === "all") {
@@ -75,6 +77,7 @@ const mergePDFs = async (pdfs: PDFFile[]): Promise<Uint8Array> => {
   return result.save();
 };
 
+// Parsing a string to a numbers array e.g. 1,2,3,7-10 -> [1,2,3,7,8,9,10]
 const parsePages = (pages: string, maxPages: number): number[] => {
   const indices: number[] = [];
   // Remove white spaces and letters and special characters except , and -
@@ -105,6 +108,7 @@ const parsePages = (pages: string, maxPages: number): number[] => {
   return indices;
 };
 
+// Event handler of merging file from the front-end
 ipcMain.on("merge-files", async (event, filePaths: PDFFile[]) => {
   try {
     const result = await dialog.showSaveDialog({

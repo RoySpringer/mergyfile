@@ -1,11 +1,17 @@
 .File {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
   align-items: center;
   margin-bottom: 8px;
 }
 
-.file-end {
+.File-end {
   display: flex;
   margin-left: 1em;
+}
+
+.File-pages {
+  width: 6em;
+  padding-left: 0.5em;
 }

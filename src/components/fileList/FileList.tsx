@@ -59,7 +59,7 @@ const FileList: FunctionComponent<Props> = (props: Props): JSX.Element => {
     for (let i = 0; i < event.dataTransfer.files.length; i++) {
       const file = event.dataTransfer.files[i];
       if (isPDF(file)) {
-        newFiles.push({ name: file.path, pages: "all" });
+        newFiles.push({ name: file.name, path: file.path, pages: "all" });
       }
     }
     setFiles((prevState) => {
@@ -125,6 +125,7 @@ const FileList: FunctionComponent<Props> = (props: Props): JSX.Element => {
       <p className="FileList-drop-text">Drop files in here</p>
       <Button
         text={"Merge"}
+        disabled={files.length > 0 ? false : true}
         onClick={() => {
           if (files.length > 0) {
             ipcRenderer.send("merge-files", files);
