@@ -1,16 +1,27 @@
+const path = require("path");
 const rules = require("./webpack.rules");
 const plugins = require("./webpack.plugins");
+const ExtractCssChunks = require("extract-css-chunks-webpack-plugin");
+const outputPath = path.resolve(__dirname, ".webpack/renderer");
 
 rules.push({
-  // test: /\.s[ac]ss$/i,
-  test: /\.css$/i,
+  test: /\.css$/,
   use: [
-    // Creates `style` nodes from JS strings
-    "style-loader",
-    // Translates CSS into CommonJS
+    {
+      loader: ExtractCssChunks.loader,
+      options: {
+        hmr: process.env.NODE_ENV === "development",
+      },
+    },
     "css-loader",
-    // Compiles Sass to CSS
-    // "sass-loader",
+  ],
+});
+rules.push({
+  test: /\.(ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
+  use: [
+    {
+      loader: "file-loader",
+    },
   ],
 });
 
@@ -19,24 +30,19 @@ rules.push({
   use: ["@svgr/webpack", "url-loader"],
 });
 
-// rules.push({
-//   test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-//   use: [
-//     {
-//       loader: "file-loader",
-//       options: {
-//         name: "[name].[ext]",
-//       },
-//     },
-//   ],
-// });
-
-// rules.push({
-//   test: /\.(jpg|jpeg|png|gif|woff|woff2|eot|ttf|svg)$/,
-//   use: [{ loader: "url-loader?limit=100000" }],
-// });
+plugins.push(
+  new ExtractCssChunks({
+    // Options similar to the same options in webpackOptions.output
+    // both options are optional
+    filename: "[name].css",
+    chunkFilename: "[id].css",
+  })
+);
 
 module.exports = {
+  output: {
+    path: outputPath,
+  },
   module: {
     rules,
   },
