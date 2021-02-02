@@ -75,3 +75,8 @@ a {
     6px 10px #72a276, 7px 11px #72a276, 8px 12px #72a276, 9px 13px #72a276,
     10px 14px #72a276, 11px 15px #72a276;
 }
+
+.error {
+  margin-top: 1em;
+  color: #ff8c8a;
+}

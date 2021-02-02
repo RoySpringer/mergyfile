@@ -86,6 +86,7 @@ const FileList: FunctionComponent<Props> = (props: Props): JSX.Element => {
       setError(message.message);
     } else if (message.status === "success") {
       setError("");
+      setFiles([]);
     }
   };
 

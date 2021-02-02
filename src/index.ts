@@ -19,7 +19,6 @@ const createWindow = (): void => {
     webPreferences: {
       nodeIntegration: true,
     },
-    // icon: "./assets/icon.png",
   });
 
   // and load the index.html of the app.
@@ -140,7 +139,7 @@ ipcMain.on("merge-files", async (event, filePaths: PDFFile[]) => {
     console.error(e);
     event.reply("merge-complete", {
       status: "failed",
-      message: "Could not save or merge the files",
+      message: "Could not save or merge the files. \nPlease check the files.",
     });
   }
 });
