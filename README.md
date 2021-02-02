@@ -1,7 +1,8 @@
 # Mergyfile
 A small application that can merge multiple pdf files into one. It is a small open source project where you can merge your PDF files.
 
-![Mergyfile](./screenshots/Mergyfile.jpg =150x) ![Mergyfile](./screenshots/Mergyfile2.jpg =150x)
+<img alt="mergyfile" src="./screenshots/Mergyfile.jpg" width="200">
+<img alt="mergyfile2" src="./screenshots/Mergyfile2.jpg" width="200">
 
 ## Why I started this project
 
