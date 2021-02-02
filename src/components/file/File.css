@@ -1,0 +1,17 @@
+.File {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.File-end {
+  display: flex;
+  margin-left: 1em;
+}
+
+.File-pages {
+  width: 6em;
+  padding-left: 0.5em;
+}

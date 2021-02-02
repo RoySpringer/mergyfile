@@ -1,0 +1,31 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.App-header {
+  display: flex;
+  width: 80%;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(-7deg);
+  font-style: italic;
+  user-select: none;
+}
+.App-header-h1 {
+  font-family: "Norican";
+  font-size: 4.6em;
+}
+.App-container {
+  position: relative;
+}
+
+.App-footer {
+  text-align: center;
+}
+
+.App-footer-credits {
+  font-size: 0.7em;
+}

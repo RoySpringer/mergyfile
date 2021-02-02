@@ -1,0 +1,11 @@
+.FileList {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.FileList-drop-text {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
