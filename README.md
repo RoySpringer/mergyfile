@@ -1,4 +1,5 @@
 # Mergyfile
+
 A small application that can merge multiple pdf files into one. It is a small open source project where you can merge your PDF files.
 
 ![Mergyfile](./screenshots/Mergyfile.jpg) ![Mergyfile](./screenshots/Mergyfile2.jpg)
@@ -14,9 +15,9 @@ To clone and run this repository you'll need [Git](https://git-scm.com) and [Nod
 
 ```bash
 # Clone this repository
-git clone https://github.com/RoySpringer/pdf-merger.git
+git clone https://github.com/RoySpringer/mergyfy.git
 # Go into the repository
-cd pdf-merger
+cd mergyfy
 # Install dependencies
 npm install
 # Run the app
@@ -26,6 +27,7 @@ npm start
 Note: If you're using Linux Bash for Windows, [see this guide](https://www.howtogeek.com/261575/how-to-run-graphical-linux-desktop-applications-from-windows-10s-bash-shell/) or use `node` from the command prompt.
 
 ## Roadmap
+
 - [x] Refactor to React - With TypeScript and webpack.
 - [x] Add page selection per PDF to indicate which pages of a PDF you want to merge.
 - [ ] Add better documentation for the project.
