@@ -20,7 +20,6 @@ const App: FunctionComponent<Props> = () => {
       <div className="App-container">
         <Icon iconType={iconType} />
         <FileList
-          files={[]}
           onUpdate={(files) => {
             if (files.length > 0) {
               setIconType({ type: 'merge' });
