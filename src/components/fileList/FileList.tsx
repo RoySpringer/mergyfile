@@ -1,14 +1,14 @@
-import * as React from "react";
-import { FunctionComponent, useState, useEffect, useCallback } from "react";
-import { ipcRenderer } from "electron";
-import File from "../file/File";
-import Button from "../button/Button";
-import { ICPMergeMessage, PDFFile } from "../../interfaces";
-import _ from "lodash";
-import path from "path";
+import * as React from 'react';
+import { FunctionComponent, useState, useEffect, useCallback } from 'react';
+import { ipcRenderer } from 'electron';
+import File from '../file/File';
+import Button from '../button/Button';
+import { ICPMergeMessage, PDFFile } from '../../interfaces';
+import _ from 'lodash';
+import path from 'path';
 
 // CSS
-import "./FileList.css";
+import './FileList.global.css';
 
 interface Props {
   files: PDFFile[];
@@ -59,7 +59,7 @@ const FileList: FunctionComponent<Props> = (props: Props): JSX.Element => {
     for (let i = 0; i < event.dataTransfer.files.length; i++) {
       const file = event.dataTransfer.files[i];
       if (isPDF(file)) {
-        newFiles.push({ name: file.name, path: file.path, pages: "all" });
+        newFiles.push({ name: file.name, path: file.path, pages: 'all' });
       }
     }
     setFiles((prevState) => {
@@ -73,7 +73,7 @@ const FileList: FunctionComponent<Props> = (props: Props): JSX.Element => {
   };
 
   const isPDF = (file: File) => {
-    return path.extname(file.path).toLowerCase() === ".pdf";
+    return path.extname(file.path).toLowerCase() === '.pdf';
   };
 
   const onDragOver = (event: DragEvent) => {
@@ -82,38 +82,39 @@ const FileList: FunctionComponent<Props> = (props: Props): JSX.Element => {
   };
 
   const onComplete = (event: any, message: ICPMergeMessage) => {
-    if (message.status === "failed") {
+    if (message.status === 'failed') {
       setError(message.message);
-    } else if (message.status === "success") {
-      setError("");
+    } else if (message.status === 'success') {
+      setError('');
       setFiles([]);
+      update([]);
     }
   };
 
   // on mount
   useEffect(() => {
-    document.addEventListener("drop", onDrop);
-    document.addEventListener("dragover", onDragOver);
-    ipcRenderer.on("merge-complete", onComplete);
+    document.addEventListener('drop', onDrop);
+    document.addEventListener('dragover', onDragOver);
+    ipcRenderer.on('merge-complete', onComplete);
 
     return () => {
       // Removing events
-      document.removeEventListener("drop", onDrop);
-      document.removeEventListener("dragover", onDragOver);
-      ipcRenderer.off("merge-complete", onComplete);
+      document.removeEventListener('drop', onDrop);
+      document.removeEventListener('dragover', onDragOver);
+      ipcRenderer.off('merge-complete', onComplete);
     };
   }, []);
 
   return (
-    <div className={"FileList"}>
-      <div className={"FileList-files"}>
+    <div className={'FileList'}>
+      <div className={'FileList-files'}>
         {files.map((file: PDFFile, index: number) => (
           <File
             key={index}
             fileName={file.name}
             onChange={(text: string) => {
               if (text.length === 0) {
-                text = "all";
+                text = 'all';
               }
               setPages(file.name, text);
             }}
@@ -125,11 +126,11 @@ const FileList: FunctionComponent<Props> = (props: Props): JSX.Element => {
       </div>
       <p className="FileList-drop-text">Drop files in here</p>
       <Button
-        text={"Merge"}
+        text={'Merge'}
         disabled={files.length > 0 ? false : true}
         onClick={() => {
           if (files.length > 0) {
-            ipcRenderer.send("merge-files", files);
+            ipcRenderer.send('merge-files', files);
           }
         }}
       />

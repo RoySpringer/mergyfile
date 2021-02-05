@@ -1,13 +1,13 @@
-import * as React from "react";
-import { FunctionComponent, useEffect, useState } from "react";
+import * as React from 'react';
+import { FunctionComponent } from 'react';
 
-import { ReactComponent as AddPDF } from "../../assets/pdf_add.svg";
-import { ReactComponent as MergePDF } from "../../assets/pdf_merge.svg";
+import { ReactComponent as AddPDF } from '../../../assets/pdf_add.svg';
+import { ReactComponent as MergePDF } from '../../../assets/pdf_merge.svg';
 // CSS
-import "./Icon.css";
+import './Icon.global.css';
 
 export type IconType = {
-  type: "add" | "merge";
+  type: 'add' | 'merge';
 };
 
 interface Props {
@@ -16,8 +16,8 @@ interface Props {
 
 const Icon: FunctionComponent<Props> = (props: Props): JSX.Element => {
   return (
-    <div className={"Icon"}>
-      {props.iconType.type === "add" ? <AddPDF /> : <MergePDF />}
+    <div className={'Icon'}>
+      {props.iconType.type === 'add' ? <AddPDF /> : <MergePDF />}
     </div>
   );
 };

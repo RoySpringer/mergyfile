@@ -1,30 +1,17 @@
-import * as React from "react";
-import { FunctionComponent, useState, useEffect } from "react";
-import * as ReactDOM from "react-dom";
-import Icon, { IconType } from "./components/icon/Icon";
-import FileList from "./components/fileList/FileList";
-import Button from "./components/button/Button";
-import { PDFFile, ICPMergeMessage } from "./interfaces";
-import { ipcRenderer } from "electron";
+import * as React from 'react';
+import { FunctionComponent, useState, useEffect } from 'react';
+import * as ReactDOM from 'react-dom';
+import Icon, { IconType } from './components/icon/Icon';
+import FileList from './components/fileList/FileList';
 
-import "./App.css";
+import './App.global.css';
 
 interface Props {
   appName?: string;
 }
 
 const App: FunctionComponent<Props> = () => {
-  const [iconType, setIconType] = useState<IconType>({ type: "add" });
-  const [error, setError] = useState<string>("");
-  const [files, setFiles] = useState<PDFFile[]>([]);
-
-  const onComplete = (event: any, message: ICPMergeMessage) => {
-    if (message.status === "failed") {
-      setError(message.message);
-    } else if (message.status === "success") {
-      setError("");
-    }
-  };
+  const [iconType, setIconType] = useState<IconType>({ type: 'add' });
 
   return (
     <div className="App absoluteFill">
@@ -37,9 +24,9 @@ const App: FunctionComponent<Props> = () => {
           files={[]}
           onUpdate={(files) => {
             if (files.length > 0) {
-              setIconType({ type: "merge" });
+              setIconType({ type: 'merge' });
             } else {
-              setIconType({ type: "add" });
+              setIconType({ type: 'add' });
             }
           }}
         />
@@ -47,14 +34,14 @@ const App: FunctionComponent<Props> = () => {
       <footer className="App-footer">
         <div className="App-footer-credits">
           <p>
-            Icons made by{" "}
+            Icons made by{' '}
             <a
               href="https://www.flaticon.com/authors/icon-monk"
               title="Icon Monk"
             >
               Icon Monk
-            </a>{" "}
-            from{" "}
+            </a>{' '}
+            from{' '}
             <a href="https://www.flaticon.com/" title="Flaticon">
               www.flaticon.com
             </a>
@@ -65,8 +52,4 @@ const App: FunctionComponent<Props> = () => {
   );
 };
 
-function render() {
-  ReactDOM.render(<App />, document.getElementById("root"));
-}
-
-render();
+export default App;

@@ -1,0 +1,114 @@
+@font-face {
+  font-family: Norican;
+  src: url('../assets/fonts/Norican-Regular.ttf');
+}
+
+@font-face {
+  font-family: Montserrat;
+  src: url('../assets/fonts/Montserrat-Regular.ttf');
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html,
+#root {
+  width: 100%;
+  height: 100%;
+}
+body {
+  width: 100%;
+  height: 100%;
+  font-family: 'Montserrat', sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  background-color: #666b6a;
+}
+
+h1,
+h2,
+h3 {
+  color: white;
+}
+
+button,
+input,
+input#file-upload-button {
+  font-family: 'Montserrat', sans-serif;
+}
+
+a {
+  color: #86cd82;
+}
+
+.absoluteFill {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.shadow-text {
+  text-shadow: 1px -1px #ff8c8a, 1px 0px #ff8c8a, 1px 1px #ff8c8a,
+    -1px -1px #ff8c8a, -1px 0px #ff8c8a, -1px 1px #ff8c8a, 0px -1px #ff8c8a,
+    0px 0px 1px #ff8c8a, 0px 1px #ff8c8a, 2px -2px #ff8c8a, 2px 0px #ff8c8a,
+    2px 2px #ff8c8a, -2px -2px #ff8c8a, -2px 0px #ff8c8a, -2px 2px #ff8c8a,
+    0px -2px #ff8c8a, 0px 0px 2px #ff8c8a, 0px 2px #ff8c8a, 2px -2px #72a276,
+    3px -1px #72a276, 4px 0px #72a276, 5px 1px #72a276, 6px 2px #72a276,
+    7px 3px #72a276, 8px 4px #72a276, 9px 5px #72a276, 10px 6px #72a276,
+    11px 7px #72a276, 12px 8px #72a276, 13px 9px #72a276, 14px 10px #72a276,
+    -2px 2px #72a276, -1px 3px #72a276, 0px 4px #72a276, 1px 5px #72a276,
+    2px 6px #72a276, 3px 7px #72a276, 4px 8px #72a276, 5px 9px #72a276,
+    6px 10px #72a276, 7px 11px #72a276, 8px 12px #72a276, 9px 13px #72a276,
+    10px 14px #72a276, 11px 15px #72a276;
+}
+
+.error {
+  margin-top: 1em;
+  color: #ff8c8a;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.App-header {
+  display: flex;
+  width: 80%;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(-7deg);
+  font-style: italic;
+  user-select: none;
+}
+.App-header-h1 {
+  font-family: 'Norican';
+  font-size: 4.6em;
+}
+.App-container {
+  position: relative;
+}
+
+.App-footer {
+  text-align: center;
+}
+
+.App-footer-credits {
+  font-size: 0.7em;
+}
