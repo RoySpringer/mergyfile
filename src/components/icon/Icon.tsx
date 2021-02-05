@@ -16,7 +16,7 @@ interface Props {
 
 const Icon: FunctionComponent<Props> = (props: Props): JSX.Element => {
   return (
-    <div className={'Icon'}>
+    <div className="Icon">
       {props.iconType.type === 'add' ? <AddPDF /> : <MergePDF />}
     </div>
   );

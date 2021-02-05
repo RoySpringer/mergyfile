@@ -16,19 +16,19 @@ const File: FunctionComponent<Props> = (props: Props): JSX.Element => {
   const [value, setValue] = useState('');
 
   return (
-    <div className={'File'}>
+    <div className="File">
       <p>{props.fileName}</p>
-      <div className={'File-end'}>
+      <div className="File-end">
         <input
-          className={'File-pages'}
+          className="File-pages"
           value={value}
           onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
             setValue(event.currentTarget.value);
             props.onChange(event.currentTarget.value);
           }}
-          placeholder={'e.g. 1,2,7-9'}
+          placeholder="e.g. 1,2,7-9"
         />
-        <Button size={'small'} text={'Remove'} onClick={props.onRemove} />
+        <Button size="small" text="Remove" onClick={props.onRemove} />
       </div>
     </div>
   );

@@ -5,7 +5,7 @@ interface PDFFile {
 }
 
 interface ICPMergeMessage {
-  status: "success" | "canceled" | "failed";
+  status: 'success' | 'canceled' | 'failed';
   message: string;
 }
 

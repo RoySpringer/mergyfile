@@ -18,21 +18,21 @@ const Button: FunctionComponent<Props> = (props: Props): JSX.Element => {
     }
   };
   return (
-    <div
-      className={
-        'Button btn-primary ' +
-        props.size +
-        ' ' +
-        (props.disabled ? 'disabled' : '')
-      }
+    <button
+      className={`Button btn-primary ${props.size} ${
+        props.disabled ? 'disabled' : ''
+      }`}
       onClick={onClick}
+      type="button"
     >
       {props.text}
-    </div>
+    </button>
   );
 };
 Button.defaultProps = {
   size: 'normal',
+  disabled: false,
+  onClick: () => {},
 };
 
 export default Button;
