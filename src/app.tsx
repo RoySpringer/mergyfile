@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { FunctionComponent, useState, useEffect } from 'react';
-import * as ReactDOM from 'react-dom';
+import { FunctionComponent, useState } from 'react';
 import Icon, { IconType } from './components/icon/Icon';
 import FileList from './components/fileList/FileList';
 
