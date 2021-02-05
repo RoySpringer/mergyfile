@@ -1,0 +1,18 @@
+{
+  "name": "mergyfile",
+  "productName": "Mergyfile",
+  "version": "1.1.0",
+  "description": "A simple pdf merge tool to easily combine multiple pdf files.",
+  "main": "./main.prod.js",
+  "author": {
+    "name": "Roy Springer",
+    "email": "cyrielspringer@gmail.com",
+    "url": "https://github.com/RoySpringer"
+  },
+  "scripts": {
+    "electron-rebuild": "node -r ../.erb/scripts/BabelRegister.js ../.erb/scripts/ElectronRebuild.js",
+    "postinstall": "npm run electron-rebuild"
+  },
+  "license": "MIT",
+  "dependencies": {}
+}
