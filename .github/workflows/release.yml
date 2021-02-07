@@ -31,6 +31,7 @@ jobs:
       - name: Build/release Mergyfile
         uses: wixplosives/action-electron-builder@v1
         with:
+          build_script_name: build:release
           # GitHub token, automatically provided to the action
           # (No need to define this secret in the repo settings)
           github_token: ${{ secrets.github_token }}
