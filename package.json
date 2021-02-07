@@ -89,7 +89,7 @@
     ],
     "publish": {
       "provider": "github",
-      "owner": "mergyfile",
+      "owner": "RoySpringer",
       "repo": "mergyfile"
     }
   },
