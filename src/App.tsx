@@ -2,6 +2,7 @@ import * as React from 'react';
 import { FunctionComponent, useState } from 'react';
 import Icon, { IconType } from './components/icon/Icon';
 import FileList from './components/fileList/FileList';
+import { ReactComponent as AppIcon } from '../assets/icon_no_bg.svg';
 
 import './App.global.css';
 
@@ -15,7 +16,7 @@ const App: FunctionComponent<Props> = () => {
   return (
     <div className="App absoluteFill">
       <header className="App-header">
-        <h1 className="App-header-h1 shadow-text">Mergyfile</h1>
+        <AppIcon width="100%" height="100" viewBox="0 0 1005 383" />
       </header>
       <div className="App-container">
         <Icon iconType={iconType} />
