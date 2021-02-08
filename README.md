@@ -36,9 +36,9 @@ Note: If you're using Linux Bash for Windows, [see this guide](https://www.howto
 
 - [x] Refactor to React - With TypeScript and webpack.
 - [x] Add page selection per PDF to indicate which pages of a PDF you want to merge.
+- [X] Add some sort of build proces to the project and create releases with installers voor all platforms.
 - [ ] Add better documentation for the project.
 - [ ] Add unit tests.
-- [ ] Add some sort of build proces to the project and create releases with installers voor all platforms.
 
 ## License
 
