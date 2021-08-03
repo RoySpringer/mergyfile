@@ -1,7 +1,7 @@
 {
   "name": "mergyfile",
   "productName": "Mergyfile",
-  "version": "2.0.3",
+  "version": "2.0.5",
   "description": "A simple pdf merge tool to easily combine multiple pdf files.",
   "main": "./main.prod.js",
   "author": {
