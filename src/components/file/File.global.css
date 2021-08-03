@@ -4,6 +4,7 @@
   grid-template-rows: auto;
   align-items: center;
   margin-bottom: 8px;
+  user-select: none;
 }
 
 .File-end {

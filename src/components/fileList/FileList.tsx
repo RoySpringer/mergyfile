@@ -18,15 +18,16 @@ interface Props {
 const FileList: FunctionComponent<Props> = (props: Props): JSX.Element => {
   const [files, setFiles] = useState<PDFFile[]>([]);
   const [error, setError] = useState<string>();
-
+  const [dragStartIndex, setDragStartIndex] = useState<number>();
   const [, updateState] = useState<unknown>();
   const forceUpdate = useCallback(() => updateState({}), []);
 
-  const update = (fileList: PDFFile[]) => {
-    if (props.onUpdate) {
-      props.onUpdate(fileList);
-    }
-  };
+  const update = useCallback(
+    (fileList: PDFFile[]) => {
+      props.onUpdate?.(fileList);
+    },
+    [props]
+  );
 
   const removeFile = (fileName: string) => {
     setFiles((prevState) => {
@@ -56,46 +57,81 @@ const FileList: FunctionComponent<Props> = (props: Props): JSX.Element => {
     return path.extname(file.path).toLowerCase() === '.pdf';
   };
 
-  const onDrop = (event: DragEvent) => {
-    event.preventDefault();
-    event.stopPropagation();
-    const newFiles: PDFFile[] = [];
-    if (event.dataTransfer) {
-      for (let i = 0; i < event.dataTransfer.files.length; i += 1) {
-        const file = event.dataTransfer.files[i];
-        if (isPDF(file)) {
-          newFiles.push({ name: file.name, path: file.path, pages: 'all' });
+  const onDrop = useCallback(
+    (event: DragEvent) => {
+      event.preventDefault();
+      event.stopPropagation();
+      const newFiles: PDFFile[] = [];
+      if (event.dataTransfer) {
+        for (let i = 0; i < event.dataTransfer.files.length; i += 1) {
+          const file = event.dataTransfer.files[i];
+          if (isPDF(file)) {
+            newFiles.push({ name: file.name, path: file.path, pages: 'all' });
+          }
         }
+        setFiles((prevState) => {
+          prevState = _.unionWith(
+            newFiles,
+            prevState,
+            (a, b) => a.name === b.name
+          );
+          update(prevState);
+          return prevState;
+        });
+        forceUpdate();
       }
-      setFiles((prevState) => {
-        prevState = _.unionWith(
-          newFiles,
-          prevState,
-          (a, b) => a.name === b.name
-        );
-        update(prevState);
-        return prevState;
-      });
-      forceUpdate();
-    }
 
-    return false;
-  };
+      return false;
+    },
+    [update]
+  );
 
   const onDragOver = (event: DragEvent) => {
     event.preventDefault();
     event.stopPropagation();
   };
 
-  const onComplete = (event: any, message: ICPMergeMessage) => {
-    if (message.status === 'failed') {
-      setError(message.message);
-    } else if (message.status === 'success') {
-      setError('');
-      setFiles([]);
-      update([]);
-    }
+  // Drag file for sorting
+  const onDragFile = (
+    event: DragEvent<HTMLDivElement>,
+    draggedIndex: number
+  ) => {
+    event.preventDefault();
+    setDragStartIndex(draggedIndex);
   };
+
+  // Drop file for sorting
+  const onDropFile = (
+    event: DragEvent<HTMLDivElement>,
+    droppedIndex: number
+  ) => {
+    event.preventDefault();
+    if (dragStartIndex !== undefined && dragStartIndex !== droppedIndex) {
+      setFiles((prevState) => {
+        prevState.splice(
+          droppedIndex,
+          0,
+          prevState.splice(dragStartIndex, 1)[0]
+        );
+        return prevState;
+      });
+    }
+
+    setDragStartIndex(undefined);
+  };
+
+  const onComplete = useCallback(
+    (event: any, message: ICPMergeMessage) => {
+      if (message.status === 'failed') {
+        setError(message.message);
+      } else if (message.status === 'success') {
+        setError('');
+        setFiles([]);
+        update([]);
+      }
+    },
+    [update]
+  );
 
   // on mount
   useEffect(() => {
@@ -109,26 +145,36 @@ const FileList: FunctionComponent<Props> = (props: Props): JSX.Element => {
       document.removeEventListener('dragover', onDragOver);
       ipcRenderer.off('merge-complete', onComplete);
     };
-  }, []);
+  }, [onComplete, onDrop]);
 
   return (
     <div className="FileList">
       <div className="FileList-files">
         {files.map((file: PDFFile, index: number) => (
-          <File
+          <div
             // eslint-disable-next-line react/no-array-index-key
             key={index}
-            fileName={file.name}
-            onChange={(text: string) => {
-              if (text.length === 0) {
-                text = 'all';
-              }
-              setPages(file.name, text);
-            }}
-            onRemove={() => {
-              removeFile(file.name);
-            }}
-          />
+            draggable
+            onDrag={(event: DragEvent<HTMLDivElement>) =>
+              onDragFile(event, index)
+            }
+            onDrop={(event: DragEvent<HTMLDivElement>) =>
+              onDropFile(event, index)
+            }
+          >
+            <File
+              fileName={file.name}
+              onChange={(text: string) => {
+                if (text.length === 0) {
+                  text = 'all';
+                }
+                setPages(file.name, text);
+              }}
+              onRemove={() => {
+                removeFile(file.name);
+              }}
+            />
+          </div>
         ))}
       </div>
       <p className="FileList-drop-text">Drop files in here</p>
