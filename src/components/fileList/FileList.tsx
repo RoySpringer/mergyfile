@@ -152,8 +152,7 @@ const FileList: FunctionComponent<Props> = (props: Props): JSX.Element => {
       <div className="FileList-files">
         {files.map((file: PDFFile, index: number) => (
           <div
-            // eslint-disable-next-line react/no-array-index-key
-            key={index}
+            key={file.name}
             draggable
             onDrag={(event: DragEvent<HTMLDivElement>) =>
               onDragFile(event, index)
