@@ -13,6 +13,5 @@
     "electron-rebuild": "node -r ../.erb/scripts/BabelRegister.js ../.erb/scripts/ElectronRebuild.js",
     "postinstall": "npm run electron-rebuild"
   },
-  "license": "MIT",
-  "dependencies": {}
+  "license": "MIT"
 }

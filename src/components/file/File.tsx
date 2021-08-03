@@ -1,5 +1,11 @@
 import * as React from 'react';
-import { FunctionComponent, useState } from 'react';
+import {
+  FunctionComponent,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 
 import Button from '../button/Button';
 
@@ -13,11 +19,20 @@ interface Props {
 }
 
 const File: FunctionComponent<Props> = (props: Props): JSX.Element => {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState<string>('');
+  const fileNameShortend = useRef<string>(props.fileName);
+  useEffect(() => {
+    const { fileName } = props;
+    if (fileName.length > 30) {
+      const start = fileName.substring(0, 15);
+      const end = fileName.substring(fileName.length - 15, fileName.length);
+      fileNameShortend.current = `${start}...${end}`;
+    }
+  }, [props]);
 
   return (
     <div className="File">
-      <p>{props.fileName}</p>
+      <p>{fileNameShortend.current}</p>
       <div className="File-end">
         <input
           className="File-pages"
